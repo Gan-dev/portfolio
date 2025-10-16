@@ -1,0 +1,349 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+  icon: string;
+}
+
+const navItems: NavItem[] = [
+  {
+    label: "Home",
+    href: "#home",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM19 19V9.97815L12 4.53371L5 9.97815V19H19Z"></path></svg>`,
+  },
+  {
+    label: "Projects",
+    href: "#projects",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
+  },
+  {
+    label: "Contact",
+    href: "#contact",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path></svg>`,
+  },
+  {
+    label: "About Me",
+    href: "#contact",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path></svg>`,
+  },
+];
+---
+
+<header
+  class="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border-gray-100 background-nav-bar py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg"
+>
+  <div
+    class="fixed top-0 left-0 background-color text-white w-56 h-screen overflow-y-auto transition-transform transform -translate-x-full ease-in-out duration-300 md:hidden z-50 -mt-px -ml-px"
+    id="sidebar"
+  >
+    <!-- Your Sidebar Content -->
+    <div class="p-4 pt-4">
+      <ul class="mt-4">
+        <li class="mb-2">
+          {
+            navItems.map((item) => (
+              <a
+                class="relative block rounded-lg  py-1.5 text-md font-medium text-white transition-all duration-200 hover:text-indigo-400"
+                href={item.href}
+                aria-label={item.label}
+              >
+                <span class="nav-indicator absolute left-1/2 top-1/2 -z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-blue-600 opacity-0 transition-all duration-200" />
+                {/* <span class="flex items-center gap-2" set:html={item.icon} /> */}
+                <span class="ml-1">{item.label}</span>
+              </a>
+            ))
+          }
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="px-4">
+    <div class="flex items-center justify-between">
+      <div class="flex shrink-0"></div>
+      <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
+        {
+          navItems.map((item) => (
+            <a
+              class="relative inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200  hover:text-gray-900"
+              href={item.href}
+              aria-label={item.label}
+            >
+              <span class="nav-indicator absolute left-1/2 top-1/2 -z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-blue-600 opacity-0 transition-all duration-200" />
+              <span class="ml-1">{item.label}</span>
+            </a>
+          ))
+        }
+      </div>
+      <div class="flex items-center justify-end gap-3">
+        <button class="background-icon md:hidden" id="open-sidebar">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  nav {
+    transform: translateX(-50%);
+    background-color: var(--background);
+    transition:
+      background-color 0.3s ease,
+      border-radius 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  nav.scrolling {
+    background-color: var(--component-bg);
+    border-color: #ffffff10;
+    border-radius: 9999px;
+  }
+
+  nav a.active .nav-indicator {
+    transform: translateY(-50%) scale(0.8);
+    opacity: 1;
+  }
+
+  nav a.active {
+    color: white !important;
+  }
+
+  @media (max-width: 767px) {
+    nav {
+      width: 100% !important;
+      transform: translateX(-50%);
+      bottom: 0;
+      left: 50%;
+      position: fixed;
+      border-radius: 1rem 1rem 0 0;
+      background-color: transparent;
+    }
+
+    nav.scrolling {
+      border-radius: 1rem 1rem 0 0;
+      background-color: var(--component-bg);
+    }
+
+    body {
+      padding-bottom: 70px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    nav {
+      width: 80% !important;
+    }
+    .background-nav-bar {
+      background-color: rgb(255 255 255 / 0.75);
+      opacity: 0.75;
+    }
+  }
+  .background-color {
+    background-color: var(--component-bg);
+    opacity: 0.95;
+  }
+
+  .background-icon {
+    color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    transform: scale(0.8) rotate(0deg);
+  }
+
+  .background-icon::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background: var(--sec);
+    opacity: 0;
+    border-radius: 50%;
+    transform: scale(0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  /* Solo hover cuando NO está activo */
+  .background-icon:not(.active):hover {
+    color: white;
+    transform: scale(0.9);
+  }
+
+  .background-icon:not(.active):hover::before {
+    transform: scale(0.9);
+  }
+
+  /* Estado activo (sidebar abierto) */
+  .background-icon.active {
+    color: var(--sec);
+    transform: scale(0.9) rotate(90deg);
+  }
+
+  .background-icon.active::before {
+    opacity: 0.1;
+    transform: scale(1);
+    animation: pulseIcon 0.6s ease-out;
+  }
+
+  @keyframes pulseIcon {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.15;
+    }
+    100% {
+      transform: scale(0.97815L12);
+      opacity: 0.1;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById("main-nav");
+  const maxScroll = 1000;
+  let rafId: number | null = null;
+
+  function updateNav() {
+    if (window.scrollY > 0) {
+      nav?.classList.add("scrolling");
+
+      const scrollProgress = Math.min(window.scrollY / maxScroll, 1);
+      const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
+
+      const minWidth = 528;
+      const maxWidth = window.innerWidth * 0.8;
+      const currentWidth = maxWidth - (maxWidth - minWidth) * easeProgress;
+
+      if (window.innerWidth >= 768) {
+        nav?.style.setProperty("width", `${currentWidth}px`);
+      }
+    } else {
+      nav?.classList.remove("scrolling");
+      nav?.style.setProperty("width", "80%");
+    }
+    rafId = null;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateNav);
+      }
+    },
+    { passive: true }
+  );
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLAnchorElement;
+      const targetId = target.getAttribute("href")?.substring(1) || "";
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a[href^='#']");
+    const observerOptions = { threshold: 0.6 };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => link.classList.remove("active"));
+          const id = entry.target.getAttribute("id");
+          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+        }
+      });
+    };
+    const sidebar = document.getElementById("sidebar");
+    const openSidebarButton = document.getElementById("open-sidebar");
+
+    openSidebarButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      const isOpen = !sidebar.classList.contains("-translate-x-full");
+
+      if (isOpen) {
+        // Cerrar el sidebar
+        sidebar.classList.add("-translate-x-full");
+        openSidebarButton.classList.remove("active");
+        console.log(
+          "Cerrando sidebar - Active removido:",
+          !openSidebarButton.classList.contains("active")
+        );
+      } else {
+        // Abrir el sidebar
+        sidebar.classList.remove("-translate-x-full");
+        openSidebarButton.classList.add("active");
+        console.log(
+          "Abriendo sidebar - Active añadido:",
+          openSidebarButton.classList.contains("active")
+        );
+      }
+
+      // Forzar blur para quitar el hover
+      openSidebarButton.blur();
+    });
+
+    // Close the sidebar when clicking outside of it
+    document.addEventListener("click", (e) => {
+      if (
+        !sidebar.contains(e.target as Node) &&
+        !openSidebarButton.contains(e.target as Node)
+      ) {
+        sidebar.classList.add("-translate-x-full");
+        openSidebarButton.classList.remove("active");
+      }
+    });
+
+    // Close sidebar when clicking on a link inside it
+    const sidebarLinks = sidebar.querySelectorAll("a");
+    sidebarLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+        openSidebarButton.classList.remove("active");
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+    sections.forEach((section) => observer.observe(section));
+  });
+</script>
+
+<style>
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: 70px;
+    }
+  }
+
+  nav a.active {
+    color: white !important;
+  }
+</style>
