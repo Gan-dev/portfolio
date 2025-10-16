@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import svgl from "../../public/svgl.png";
-import stockin from "../../public/stockin.png";
-import moviesfordevs from "../../public/moviesfordevs.png";
+import phonetec from "../../public/phonetec.png";
+import sumaq from "../../public/sumaq.jpg";
+import umbralAi from "../../public/umbralAi.jpg";
 import velez from "../../public/velez.png";
 
 interface Project {
@@ -15,31 +15,24 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "MoviesForDevs",
-    image: moviesfordevs as ImageMetadata,
-    link: "https://github.com/gothsec/MoviesForDevs",
-    preview: "https://movies-for-devs.vercel.app",
-    status: "Deployed",
-  },
-  {
-    title: "StockIn",
-    image: stockin as ImageMetadata,
-    link: "https://github.com/gothsec/stockin-demo",
-    preview: "https://stockin-demo.vercel.app",
+    title: "UMBRAL.AI",
+    image: umbralAi as ImageMetadata,
+    link: "https://github.com/Gan-dev",
+    preview: "",
     status: "On Development",
   },
   {
-    title: "Svgl.app",
-    image: svgl as ImageMetadata,
-    link: "https://github.com/pheralb/svgl",
-    preview: "https://svgl.app",
-    status: "Contributor",
+    title: "Sumaq.es",
+    image: sumaq as ImageMetadata,
+    link: "https://github.com/Gan-dev",
+    preview: "",
+    status: "On Development",
   },
   {
-    title: "Rifas Velez Web",
-    image: velez as ImageMetadata,
-    link: "https://github.com/Buga-Software/rifasvelez-web",
-    preview: "https://www.rifasvelez.com",
+    title: "Phonetec.es",
+    image: phonetec as ImageMetadata,
+    link: "https://github.com/Gan-dev",
+    preview: "https://phonetec.es",
     status: "Deployed",
   },
 ];
@@ -94,7 +87,7 @@ const projects: Project[] = [
                     </svg>
                   </a>
                   <a
-                    target="_blank"
+                    target="_self"
                     href={project.preview}
                     aria-label="Preview"
                     class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
@@ -117,7 +110,7 @@ const projects: Project[] = [
     </div>
     <a
       target="_blank"
-      href="https://github.com/Gothsec?tab=repositories"
+      href="https://github.com/Gan-dev?tab=repositories"
       aria-label="GitHub"
       class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105"
     >
