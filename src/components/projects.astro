@@ -3,8 +3,7 @@ import { Image } from "astro:assets";
 import phonetec from "../../public/phonetec.png";
 import sumaq from "../../public/sumaq.jpg";
 import umbralAi from "../../public/umbralAi.jpg";
-import velez from "../../public/velez.png";
-
+import paulaNails from "../../public/paulaNails.png";
 interface Project {
   title: string;
   image: ImageMetadata;
@@ -33,6 +32,13 @@ const projects: Project[] = [
     image: phonetec as ImageMetadata,
     link: "https://github.com/Gan-dev",
     preview: "https://phonetec.es",
+    status: "Deployed",
+  },
+  {
+    title: "PaulaNails.es",
+    image: paulaNails as ImageMetadata,
+    link: "https://paulanails-es.vercel.app",
+    preview: "https://paulanails-es.vercel.app",
     status: "Deployed",
   },
 ];
