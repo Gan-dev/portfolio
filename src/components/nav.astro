@@ -113,7 +113,11 @@ const navItems: NavItem[] = [
   </div>
   <div class="px-4">
     <div class="flex items-center justify-between">
-      <div class="flex shrink-0"></div>
+      <div class="flex shrink-0">
+        <a href="#home" aria-label="Home">
+          <img src="/logo.webp" alt="Logo" class="h-10 w-10 md:h-12 md:w-12 object-contain" />
+        </a>
+      </div>
       <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
         {
           navItems.map((item) => (

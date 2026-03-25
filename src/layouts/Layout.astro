@@ -14,8 +14,8 @@ const { title } = Astro.props;
     <Analytics />
     <meta name="description" content="Software Developer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.jpg" />
-    <meta property="og:title" content="Gandev.dev" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta property="og:title" content="Gandev" />
     <meta property="og:description" content="Software Developer" />
     <meta
       property="og:image"
@@ -23,13 +23,21 @@ const { title } = Astro.props;
     />
     <meta property="og:url" content="https://gandev.vercel.app" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Gandev.dev Website" />
+    <meta property="og:site_name" content="Gandev Website" />
     <meta property="og:locale" content="en_US" />
-
     <title>{title}</title>
   </head>
-  <body class="bg-[--background] sm:px-28 lg:px-20 px-9">
-    <slot />
+  <body>
+    <!-- Ambient background blobs -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="ambient-blob ambient-blob-1"></div>
+      <div class="ambient-blob ambient-blob-2"></div>
+      <div class="ambient-blob ambient-blob-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="content-wrapper">
+      <slot />
+    </div>
   </body>
 </html>
 
@@ -37,10 +45,13 @@ const { title } = Astro.props;
   @import url("https://fonts.cdnfonts.com/css/montserrat");
 
   :root {
-    --background: #0f1113;
-    --component-bg: #1a1d21;
+    --background: #080a0c;
+    --component-bg: #111418;
+    --component-border: #1e2228;
     --sec: #37e4e7;
-    --white: #dfdfdf;
+    --sec-dim: #37e4e720;
+    --white: #e8e8e8;
+    --white-muted: #a0a6b0;
     --white-icon: #f3f3f398;
     --white-icon-tr: #f3f3f310;
   }
@@ -56,34 +67,124 @@ const { title } = Astro.props;
     margin: 0;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .content-wrapper {
+    position: relative;
+    max-width: 100%;
+    padding-left: clamp(1.25rem, 5vw, 5rem);
+    padding-right: clamp(1.25rem, 5vw, 5rem);
+  }
+
   *::selection {
     background-color: var(--sec);
     color: var(--background);
   }
 
-  /* Scrollbar styles */
+  /* Ambient decorative blobs */
+  .ambient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.06;
+  }
 
+  .ambient-blob-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--sec);
+    top: -200px;
+    right: -100px;
+    animation: blobFloat 18s ease-in-out infinite alternate;
+  }
+
+  .ambient-blob-2 {
+    width: 400px;
+    height: 400px;
+    background: #8b5cf6;
+    bottom: 20%;
+    left: -150px;
+    opacity: 0.05;
+    animation: blobFloat 22s ease-in-out infinite alternate-reverse;
+  }
+
+  .ambient-blob-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--sec);
+    bottom: 5%;
+    right: 10%;
+    opacity: 0.04;
+    animation: blobFloat 26s ease-in-out infinite alternate;
+  }
+
+  @keyframes blobFloat {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(30px, 20px) scale(1.05); }
+    100% { transform: translate(-20px, 40px) scale(0.95); }
+  }
+
+  /* Subtle grid overlay */
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  /* Scrollbar */
   ::-webkit-scrollbar {
-    width: 15px;
+    width: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--container);
-    border-radius: 30px;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--background);
-    border-radius: 10px;
+    background: var(--component-border);
+    border-radius: 99px;
+    transition: background 0.3s;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--pink);
+    background: var(--sec);
   }
 
-  /* Scrollbar styles for Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--line) var(--container);
+    scrollbar-color: var(--component-border) transparent;
+  }
+
+  /* Section dividers */
+  section + section {
+    border-top: 1px solid var(--white-icon-tr);
+  }
+
+  .shiny-sec {
+    background: linear-gradient(135deg, #37e4e7 20%, #a0f5f6 50%, #37e4e7 80%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 4s linear infinite;
+  }
+
+  @keyframes shine {
+    0%   { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 </style>

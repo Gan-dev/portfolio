@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const LetterGlitch = ({
   glitchColors = ["#5e4491", "#A476FF", "#241a38"],
@@ -26,6 +26,17 @@ const LetterGlitch = ({
   const grid = useRef({ columns: 0, rows: 0 });
   const context = useRef<CanvasRenderingContext2D | null>(null);
   const lastGlitchTime = useRef(Date.now());
+  const [currentPalette, setCurrentPalette] = useState(0);
+
+  // Paletas de colores vibrantes que contrastan con la página oscura
+  const colorPalettes = [
+    ["#00ffff", "#00d4d4", "#00a8a8"], // Cyan eléctrico
+    ["#ff00ff", "#d400d4", "#aa00aa"], // Magenta brillante
+    ["#ffff00", "#d4d400", "#a8a800"], // Amarillo neón
+    ["#00ff88", "#00d470", "#00a858"], // Verde menta
+    ["#ff6600", "#d45500", "#aa4400"], // Naranja vibrante
+    ["#00ccff", "#00a8d4", "#0088aa"] // Azul cielo
+  ];
 
   const fontSize = 16;
   const charWidth = 10;
@@ -99,7 +110,8 @@ const LetterGlitch = ({
   };
 
   const getRandomColor = () => {
-    return glitchColors[Math.floor(Math.random() * glitchColors.length)];
+    const palette = colorPalettes[currentPalette];
+    return palette[Math.floor(Math.random() * palette.length)];
   };
 
   const hexToRgb = (hex: string) => {
@@ -276,6 +288,16 @@ const LetterGlitch = ({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [glitchSpeed, smooth]);
+
+  // Rotar paletas de colores cada 3 segundos
+  useEffect(() => {
+    const paletteInterval = setInterval(() => {
+      setCurrentPalette((prev) => (prev + 1) % colorPalettes.length);
+    }, 3000);
+
+    return () => clearInterval(paletteInterval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="relative w-full h-full bg-[#101010] overflow-hidden">
