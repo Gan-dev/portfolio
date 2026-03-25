@@ -199,116 +199,59 @@ const GitHubStats = () => {
 
   return (
     <div ref={ref} className="w-full">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <p className="text-sm text-[var(--sec)] mb-2 font-medium tracking-wide uppercase shiny-sec">
-            Open Source
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--white)]">
-            GitHub Activity
-          </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-[var(--sec)] to-transparent rounded-full mt-3" />
-        </div>
-        <a
-          href={stats?.profileUrl ?? `https://github.com/${GITHUB_USER}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:border-[var(--sec)]/30 hover:bg-[var(--sec)]/5 transition-all duration-200 text-sm font-medium"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-            <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
-          </svg>
-          View Profile
-        </a>
-      </div>
-
       {loading && (
-        <div className="flex items-center justify-center py-20">
-          <div
-            className="w-8 h-8 rounded-full border-2 border-[var(--sec)]/20 border-t-[var(--sec)]"
-            style={{ animation: "spin 0.8s linear infinite" }}
-          />
+        <div className="flex items-center justify-center py-6">
+          <div className="w-5 h-5 rounded-full border-2 border-[var(--sec)]/20 border-t-[var(--sec)]" style={{ animation: "spin 0.8s linear infinite" }} />
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
         </div>
       )}
 
       {error && (
-        <div className="flex items-center justify-center py-12 text-[var(--white-muted)] text-sm">
-          Could not load GitHub stats. Check your connection or visit&nbsp;
-          <a
-            href={`https://github.com/${GITHUB_USER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--sec)] hover:underline"
-          >
-            github.com/{GITHUB_USER}
-          </a>
-        </div>
+        <p className="text-[10px] text-[var(--white-muted)] text-center py-4">
+          Could not load —{" "}
+          <a href={`https://github.com/${GITHUB_USER}`} target="_blank" rel="noopener noreferrer" className="text-[var(--sec)] hover:underline">GitHub</a>
+        </p>
       )}
 
       {!loading && !error && stats && (
-        <div className="space-y-5">
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="space-y-4">
+          {/* 4 stats in a 2x2 minimal grid */}
+          <div className="grid grid-cols-2 gap-px bg-[var(--component-border)] rounded-xl overflow-hidden border border-[var(--component-border)]">
             {statItems.map((item) => (
-              <div
-                key={item.label}
-                className="flex flex-col gap-2 p-4 rounded-2xl bg-[var(--component-bg)] border border-[var(--component-border)] hover:border-[var(--sec)]/20 transition-colors duration-300"
-              >
-                <div className="text-[var(--sec)] opacity-70">{item.icon}</div>
-                <span className="text-2xl md:text-3xl font-bold text-[var(--white)] tabular-nums">
-                  {item.value}
-                </span>
-                <span className="text-xs text-[var(--white-muted)] font-medium">
-                  {item.label}
-                </span>
+              <div key={item.label} className="flex flex-col gap-0.5 px-4 py-3 bg-[var(--component-bg)]">
+                <span className="text-2xl font-bold text-[var(--white)] tabular-nums leading-none">{item.value}</span>
+                <span className="text-[10px] text-[var(--white-muted)] mt-1">{item.label}</span>
               </div>
             ))}
           </div>
 
-          {/* Languages */}
+          {/* Language dots — single line */}
           {stats.languages.length > 0 && (
-            <div className="p-5 rounded-2xl bg-[var(--component-bg)] border border-[var(--component-border)]">
-              <p className="text-sm font-semibold text-[var(--white-muted)] uppercase tracking-wider mb-4">
-                Top Languages
-              </p>
-              <div className="space-y-3">
-                {stats.languages.map((lang) => {
-                  const pct = Math.round((lang.count / maxLangCount) * 100);
-                  const color = LANG_COLORS[lang.name] ?? "#6b7280";
-                  return (
-                    <div key={lang.name} className="space-y-1.5">
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-2">
-                          <span
-                            className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                            style={{ backgroundColor: color }}
-                          />
-                          <span className="text-[var(--white)] font-medium">
-                            {lang.name}
-                          </span>
-                        </div>
-                        <span className="text-[var(--white-muted)] text-xs tabular-nums">
-                          {lang.count} {lang.count === 1 ? "repo" : "repos"}
-                        </span>
-                      </div>
-                      <div className="h-1.5 w-full bg-[var(--component-border)] rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full transition-all duration-1000 ease-out"
-                          style={{
-                            width: visible ? `${pct}%` : "0%",
-                            backgroundColor: color,
-                            transitionDelay: "200ms",
-                          }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="flex flex-wrap gap-x-3 gap-y-1.5 px-1">
+              {stats.languages.map((lang) => {
+                const color = LANG_COLORS[lang.name] ?? "#6b7280";
+                return (
+                  <div key={lang.name} className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: color }} />
+                    <span className="text-[11px] text-[var(--white-muted)]">{lang.name}</span>
+                  </div>
+                );
+              })}
             </div>
           )}
+
+          {/* View profile link */}
+          <a
+            href={stats.profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-[11px] text-[var(--white-muted)] hover:text-[var(--sec)] transition-colors duration-200 px-1"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
+              <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
+            </svg>
+            github.com/Gan-dev
+          </a>
         </div>
       )}
     </div>

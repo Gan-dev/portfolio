@@ -1,61 +1,67 @@
 ---
-interface Skill {
+interface Tech {
   name: string;
-  pct: number;
+  icon?: string;
 }
 
 interface Group {
   label: string;
   color: string;
-  skills: Skill[];
+  techs: Tech[];
 }
 
 const groups: Group[] = [
   {
     label: "Backend",
     color: "#37e4e7",
-    skills: [
-      { name: "NestJS / Node.js", pct: 92 },
-      { name: "TypeScript", pct: 92 },
-      { name: "DDD & Hexagonal Arch.", pct: 85 },
-      { name: "REST APIs", pct: 90 },
-      { name: "RabbitMQ", pct: 78 },
+    techs: [
+      { name: "NestJS", icon: "/svg/nestjs.svg" },
+      { name: "Node.js", icon: "/svg/nodejs.svg" },
+      { name: "TypeScript", icon: "/svg/typeScript.svg" },
+      { name: "Python", icon: "/svg/Python.svg" },
+      { name: "RabbitMQ" },
+      { name: "DDD / Hexagonal" },
     ],
   },
   {
     label: "Databases & Data",
     color: "#a78bfa",
-    skills: [
-      { name: "PostgreSQL", pct: 90 },
-      { name: "MySQL", pct: 75 },
-      { name: "Snowflake", pct: 68 },
-      { name: "Metabase / Cube BI", pct: 78 },
+    techs: [
+      { name: "PostgreSQL", icon: "/svg/postgresql.svg" },
+      { name: "MySQL", icon: "/svg/mysql.svg" },
+      { name: "MongoDB", icon: "/svg/MongoDB.svg" },
+      { name: "Snowflake" },
+      { name: "Metabase" },
+      { name: "Redis" },
     ],
   },
   {
     label: "DevOps & Cloud",
     color: "#34d399",
-    skills: [
-      { name: "Docker", pct: 82 },
-      { name: "AWS EC2 / RDS", pct: 72 },
-      { name: "CI/CD Pipelines", pct: 78 },
-      { name: "Git / GitHub", pct: 94 },
+    techs: [
+      { name: "Docker", icon: "/svg/docker.svg" },
+      { name: "Git", icon: "/svg/git.svg" },
+      { name: "AWS EC2 / RDS", icon: "/svg/aws-cloud.svg" },
+      { name: "Linux / Bash", icon: "/svg/bash.svg" },
+      { name: "CI/CD" },
+      { name: "Vercel", icon: "/svg/vercel.svg" },
     ],
   },
   {
     label: "AI & Automation",
     color: "#f59e0b",
-    skills: [
-      { name: "LLM APIs / MCP", pct: 82 },
-      { name: "n8n Workflows", pct: 85 },
-      { name: "Python", pct: 80 },
-      { name: "AI Orchestration", pct: 78 },
+    techs: [
+      { name: "n8n", icon: "/svg/n8n.svg" },
+      { name: "AI Agents", icon: "/svg/ai-agent.svg" },
+      { name: "LLM / MCP" },
+      { name: "LangChain" },
+      { name: "WhatsApp API" },
     ],
   },
 ];
 ---
 
-<div id="techstack-root" class="space-y-3">
+<div class="space-y-3">
   {
     groups.map((group) => (
       <div class="p-4 rounded-2xl bg-[var(--component-bg)] border border-[var(--component-border)] hover:border-[var(--sec)]/20 transition-colors duration-300">
@@ -65,46 +71,24 @@ const groups: Group[] = [
         >
           {group.label}
         </p>
-        <div class="space-y-2.5">
-          {group.skills.map((skill) => (
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-[var(--white-muted)]">{skill.name}</span>
-                <span class="text-[var(--white-muted)] tabular-nums">
-                  {skill.pct}%
-                </span>
-              </div>
-              <div class="h-1.5 w-full bg-[var(--component-border)] rounded-full overflow-hidden">
-                <div
-                  class="skill-fill h-full rounded-full transition-[width] duration-700 ease-out"
-                  data-pct={skill.pct}
-                  style={`width: 0%; background-color: ${group.color}`}
+        <div class="flex flex-wrap gap-2">
+          {group.techs.map((tech) => (
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium text-[var(--white-muted)] bg-[var(--white-icon-tr)] border border-[var(--component-border)] hover:text-[var(--white)] transition-colors duration-200">
+              {tech.icon && (
+                <img
+                  src={tech.icon}
+                  alt={tech.name}
+                  class="w-3.5 h-3.5 object-contain opacity-80"
+                  width="14"
+                  height="14"
+                  loading="lazy"
                 />
-              </div>
-            </div>
+              )}
+              {tech.name}
+            </span>
           ))}
         </div>
       </div>
     ))
   }
 </div>
-
-<script>
-  const root = document.getElementById("techstack-root");
-  if (root) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          root.querySelectorAll<HTMLElement>(".skill-fill").forEach((bar, i) => {
-            setTimeout(() => {
-              bar.style.width = `${bar.dataset.pct}%`;
-            }, i * 60);
-          });
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(root);
-  }
-</script>

@@ -5,7 +5,6 @@ import Home from "@/components/home.astro";
 import Projects from "@/components/projects.astro";
 import Contact from "@/components/contact.astro";
 import Footer from "@/components/footer.astro";
-import GitHubStats from "@/React/GitHubStats.tsx";
 import Timeline from "@/components/Timeline.astro";
 import TechStack from "@/components/TechStack.astro";
 ---
@@ -13,12 +12,7 @@ import TechStack from "@/components/TechStack.astro";
 <Layout title="Gandev.dev">
   <Nav />
   <Home />
-  <section class="py-16 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
-    <div class="max-w-5xl mx-auto">
-      <GitHubStats client:visible />
-    </div>
-  </section>
-  <section id="experience" class="py-16 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
+  <section id="experience" class="py-16 px-4 sm:px-6 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
     <div class="max-w-5xl mx-auto">
       <div class="mb-10">
         <p class="text-sm text-[var(--sec)] mb-2 font-medium tracking-wide uppercase shiny-sec">Career</p>
@@ -32,7 +26,7 @@ import TechStack from "@/components/TechStack.astro";
     </div>
   </section>
   <Projects />
-  <section class="py-16 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
+  <section class="py-16 px-4 sm:px-6 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
     <div class="max-w-5xl mx-auto">
       <div class="mb-10">
         <p class="text-sm text-[var(--sec)] mb-2 font-medium tracking-wide uppercase shiny-sec">What's next</p>

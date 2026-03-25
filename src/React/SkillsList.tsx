@@ -50,13 +50,7 @@ const groups: SkillGroup[] = [
 
 const SkillsList = () => {
   return (
-    <div className="text-left pt-3 md:pt-9 w-full">
-      <div className="mb-8">
-        <h3 className="text-[var(--white)] text-3xl md:text-4xl font-bold mb-2">
-          What I do
-        </h3>
-        <div className="h-1 w-20 bg-gradient-to-r from-[var(--sec)] to-transparent rounded-full" />
-      </div>
+    <div className="text-left w-full">
 
       <div className="space-y-4 md:w-[450px] w-full">
         {groups.map((group) => (

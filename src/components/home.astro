@@ -3,23 +3,28 @@
 const AVAILABLE_FOR_WORK = true;
 
 import LetterGlitch from "../React/LetterGlitch.tsx";
-import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
+import GitHubStats from "../React/GitHubStats.tsx";
 ---
 
-<section class="text-[var(--white)] mt-20 md:mt-0" id="home">
-  <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
+<section class="text-[var(--white)] mt-20 md:mt-0 px-4 sm:px-6" id="home">
+  <div class="max-w-5xl mx-auto space-y-8 py-16 md:py-36 pb-14">
     <div class="text-left space-y-4">
       <!-- Availability badge -->
-      <div class={`flex items-center gap-2 px-3 py-1.5 rounded-full border w-fit text-xs font-medium ${
-        AVAILABLE_FOR_WORK
-          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-          : 'bg-[var(--white-icon-tr)] border-[var(--component-border)] text-[var(--white-muted)]'
-      }`}>
-        <span class={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-          AVAILABLE_FOR_WORK ? 'bg-emerald-400 animate-pulse' : 'bg-[var(--white-muted)]'
-        }`}></span>
-        {AVAILABLE_FOR_WORK ? 'Available for work' : 'Not available'}
+      <div
+        class={`flex items-center gap-2 px-3 py-1.5 rounded-full border w-fit text-xs font-medium ${
+          AVAILABLE_FOR_WORK
+            ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+            : "bg-[var(--white-icon-tr)] border-[var(--component-border)] text-[var(--white-muted)]"
+        }`}
+      >
+        <span
+          class={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+            AVAILABLE_FOR_WORK
+              ? "bg-emerald-400 animate-pulse"
+              : "bg-[var(--white-muted)]"
+          }`}></span>
+        {AVAILABLE_FOR_WORK ? "Available for work" : "Not available"}
       </div>
       <p class="text-md md:text-lg text-[var(--white-icon)] shiny-white">
         Hi, I'm Gustavo Cev
@@ -37,82 +42,185 @@ import SkillsList from "../React/SkillsList.tsx";
           cutting-edge <span class="text-[var(--sec)] shiny-sec">backend</span> development.
         </p>
       </div>
-      <div class="flex justify-start gap-2 pt-3 md:pt-6">
-        <a
-          target="_blank"
-          href="https://github.com/Gan-dev"
-          aria-label="GitHub"
-          class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-8"
+      <div
+        class="flex items-center justify-between gap-3 pt-12 md:pt-32 flex-wrap"
+      >
+        <!-- Social links -->
+        <div class="flex items-center gap-3">
+          <a
+            target="_blank"
+            href="https://github.com/Gan-dev"
+            aria-label="GitHub"
+            class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
           >
-            <path
-              d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
-            ></path>
-          </svg>
-        </a>
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/gustavo-cevallos-web-developer/"
-          aria-label="LinkedIn"
-          class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-8"
-          >
-            <path
-              d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"
-            ></path>
-          </svg>
-        </a>
-        <a
-          target="_blank"
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=gandev.com@gmail.com&su=Hey%20Gustavo!"
-          aria-label="Email"
-          class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="2.1em"
-            height="2.1em"
-            viewBox="0 0 24 24"
-          >
-            <path
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
               fill="currentColor"
-              d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"
-            ></path>
-          </svg>
-        </a>
+              class="size-6"
+            >
+              <path
+                d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/gustavo-cevallos-web-developer/"
+            aria-label="LinkedIn"
+            class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6"
+            >
+              <path
+                d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            target="_blank"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=gandev.com@gmail.com&su=Hey%20Gustavo!"
+            aria-label="Email"
+            class="text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="size-6"
+            >
+              <path
+                fill="currentColor"
+                d="m18.73 5.41l-1.28 1L12 10.46L6.55 6.37l-1.28-1A2 2 0 0 0 2 7.05v11.59A1.36 1.36 0 0 0 3.36 20h3.19v-7.72L12 16.37l5.45-4.09V20h3.19A1.36 1.36 0 0 0 22 18.64V7.05a2 2 0 0 0-3.27-1.64"
+              ></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Divider -->
+
+        <div class="flex items-center">
+          <a
+            href="#projects"
+            title="Umbral AI — coming soon"
+            class="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-[var(--component-border)] bg-[var(--component-bg)] hover:border-[var(--sec)]/30 transition-all duration-200 overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-[var(--sec)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+            </div>
+            <span class="relative w-5 h-5 flex-shrink-0 text-[var(--sec)]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"
+                ></path>
+              </svg>
+            </span>
+            <span
+              class="relative text-xs font-medium text-[var(--white-muted)] group-hover:text-[var(--white)] transition-colors duration-200"
+              >Umbral AI</span
+            >
+            <span
+              class="relative text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[var(--sec)]/10 border border-[var(--sec)]/20 text-[var(--sec)]"
+              >Soon</span
+            >
+          </a>
+
+          <!-- AI Agents teaser -->
+          <a
+            href="#projects"
+            title="AI Agents & Workflows — coming soon"
+            class="group relative flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border border-[var(--component-border)] bg-[var(--component-bg)] hover:border-[#a78bfa]/30 transition-all duration-200 overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-[#a78bfa]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+            </div>
+            <span class="relative w-5 h-5 flex-shrink-0 text-[#a78bfa]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                ></path>
+              </svg>
+            </span>
+            <span
+              class="relative text-xs font-medium text-[var(--white-muted)] group-hover:text-[var(--white)] transition-colors duration-200"
+              >Agents & Workflows</span
+            >
+            <span
+              class="relative text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#a78bfa]/10 border border-[#a78bfa]/20 text-[#a78bfa]"
+              >Soon</span
+            >
+          </a>
+        </div>
+
+        <!-- Umbral AI teaser -->
       </div>
     </div>
 
-    <LogoWall />
+    <div
+      class="h-px bg-gradient-to-r from-transparent via-[var(--component-border)] to-transparent"
+    >
+    </div>
 
-    <div class="flex flex-col lg:flex-row items-center gap-8">
-      <SkillsList client:visible />
+    <div class="mb-6">
+      <h3 class="text-[var(--white)] text-3xl md:text-4xl font-bold mb-2">
+        What I do
+      </h3>
       <div
-        class="flex justify-center md:w-full md:h-[292px] size-[290px] pt-3 md:pt-9 md:ml-16 relative"
+        class="h-1 w-20 bg-gradient-to-r from-[var(--sec)] to-transparent rounded-full"
       >
-        <LetterGlitch
-          client:visible
-          glitchColors={["#5e4491", "#A476FF", "#241a38"]}
-          glitchSpeed={33}
-          centerVignette={false}
-          outerVignette={true}
-          smooth={true}
-        />
-        <img 
-          src="/logo.webp" 
-          alt="Logo" 
-          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-56 md:h-56 object-contain z-10 pointer-events-none"
-        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <!-- Col 1: Skills -->
+      <SkillsList client:visible />
+      <!-- Col 2: two rows -->
+      <div class="flex flex-col items-center gap-8">
+        <div class="w-full">
+          <GitHubStats client:visible />
+        </div>
+        <!-- Row 1: LetterGlitch -->
+        <div class="relative w-[500px] h-[220px]">
+          <LetterGlitch
+            client:visible
+            glitchColors={["#5e4491", "#A476FF", "#241a38"]}
+            glitchSpeed={33}
+            centerVignette={false}
+            outerVignette={true}
+            smooth={true}
+          />
+          <img
+            src="/logo.webp"
+            alt="Logo"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 object-contain z-10 pointer-events-none"
+          />
+        </div>
       </div>
     </div>
   </div>
