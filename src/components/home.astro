@@ -1,4 +1,7 @@
 ---
+// ✦ Toggle this to update the availability badge shown in the hero
+const AVAILABLE_FOR_WORK = true;
+
 import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
@@ -7,6 +10,17 @@ import SkillsList from "../React/SkillsList.tsx";
 <section class="text-[var(--white)] mt-20 md:mt-0" id="home">
   <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
     <div class="text-left space-y-4">
+      <!-- Availability badge -->
+      <div class={`flex items-center gap-2 px-3 py-1.5 rounded-full border w-fit text-xs font-medium ${
+        AVAILABLE_FOR_WORK
+          ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+          : 'bg-[var(--white-icon-tr)] border-[var(--component-border)] text-[var(--white-muted)]'
+      }`}>
+        <span class={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+          AVAILABLE_FOR_WORK ? 'bg-emerald-400 animate-pulse' : 'bg-[var(--white-muted)]'
+        }`}></span>
+        {AVAILABLE_FOR_WORK ? 'Available for work' : 'Not available'}
+      </div>
       <p class="text-md md:text-lg text-[var(--white-icon)] shiny-white">
         Hi, I'm Gustavo Cev
       </p>

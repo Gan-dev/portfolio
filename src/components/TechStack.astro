@@ -1,0 +1,110 @@
+---
+interface Skill {
+  name: string;
+  pct: number;
+}
+
+interface Group {
+  label: string;
+  color: string;
+  skills: Skill[];
+}
+
+const groups: Group[] = [
+  {
+    label: "Backend",
+    color: "#37e4e7",
+    skills: [
+      { name: "NestJS / Node.js", pct: 92 },
+      { name: "TypeScript", pct: 92 },
+      { name: "DDD & Hexagonal Arch.", pct: 85 },
+      { name: "REST APIs", pct: 90 },
+      { name: "RabbitMQ", pct: 78 },
+    ],
+  },
+  {
+    label: "Databases & Data",
+    color: "#a78bfa",
+    skills: [
+      { name: "PostgreSQL", pct: 90 },
+      { name: "MySQL", pct: 75 },
+      { name: "Snowflake", pct: 68 },
+      { name: "Metabase / Cube BI", pct: 78 },
+    ],
+  },
+  {
+    label: "DevOps & Cloud",
+    color: "#34d399",
+    skills: [
+      { name: "Docker", pct: 82 },
+      { name: "AWS EC2 / RDS", pct: 72 },
+      { name: "CI/CD Pipelines", pct: 78 },
+      { name: "Git / GitHub", pct: 94 },
+    ],
+  },
+  {
+    label: "AI & Automation",
+    color: "#f59e0b",
+    skills: [
+      { name: "LLM APIs / MCP", pct: 82 },
+      { name: "n8n Workflows", pct: 85 },
+      { name: "Python", pct: 80 },
+      { name: "AI Orchestration", pct: 78 },
+    ],
+  },
+];
+---
+
+<div id="techstack-root" class="space-y-3">
+  {
+    groups.map((group) => (
+      <div class="p-4 rounded-2xl bg-[var(--component-bg)] border border-[var(--component-border)] hover:border-[var(--sec)]/20 transition-colors duration-300">
+        <p
+          class="text-xs font-semibold uppercase tracking-wider mb-3"
+          style={`color: ${group.color}`}
+        >
+          {group.label}
+        </p>
+        <div class="space-y-2.5">
+          {group.skills.map((skill) => (
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-[var(--white-muted)]">{skill.name}</span>
+                <span class="text-[var(--white-muted)] tabular-nums">
+                  {skill.pct}%
+                </span>
+              </div>
+              <div class="h-1.5 w-full bg-[var(--component-border)] rounded-full overflow-hidden">
+                <div
+                  class="skill-fill h-full rounded-full transition-[width] duration-700 ease-out"
+                  data-pct={skill.pct}
+                  style={`width: 0%; background-color: ${group.color}`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const root = document.getElementById("techstack-root");
+  if (root) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          root.querySelectorAll<HTMLElement>(".skill-fill").forEach((bar, i) => {
+            setTimeout(() => {
+              bar.style.width = `${bar.dataset.pct}%`;
+            }, i * 60);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(root);
+  }
+</script>

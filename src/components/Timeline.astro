@@ -1,0 +1,151 @@
+---
+interface TimelineEntry {
+  period: string;
+  role: string;
+  company: string;
+  companyUrl?: string;
+  type: "work" | "freelance" | "self";
+  description: string;
+  milestones: string[];
+  current?: boolean;
+}
+
+const timeline: TimelineEntry[] = [
+  {
+    period: "Jan 2025 — Present",
+    role: "Backend Developer & AI Engineer",
+    company: "Sumaq / Projects",
+    type: "work",
+    current: true,
+    description:
+      "Mobile app for client management + AI and MCP-powered appointment automation. SaaS-ready architecture designed for multi-sector scaling.",
+    milestones: [
+      "Modular NestJS + PostgreSQL API with multi-tenant design and logical isolation",
+      "React Native frontend connected to the API for booking and client management flows",
+      "Intelligent scheduling automation with slot proposals and AI-driven workflows",
+      "MCP integrations and LLM orchestration for autonomous appointment handling",
+    ],
+  },
+  {
+    period: "Sep 2023 — Oct 2025",
+    role: "Backend Developer",
+    company: "Clasing",
+    companyUrl: "https://clasingelts.com",
+    type: "work",
+    description:
+      "E-learning platform covering payments, video calls and AI-powered dashboards. Full ownership of critical backend systems.",
+    milestones: [
+      "PostgreSQL reporting optimization through query tuning and data access refactoring — feeding Metabase and Cube BI dashboards",
+      "RabbitMQ + gateway for wallet transactional flow — reduced errors and improved consistency",
+      "Full backend for the exercise system: submission, automated grading, explanations and FUNDAE legal compliance",
+      "Support ticket system reducing average resolution time from ~10 min to ~3 min (~70% faster)",
+      "Deployed ARI: AI assistant with real-time conversation analysis, REST API and n8n automation workflows",
+      "NestJS + TypeScript with DDD and Hexagonal architecture — full project ownership and technical decision-making",
+    ],
+  },
+  {
+    period: "Jan 2021 — Present",
+    role: "Web Developer",
+    company: "SMBs / Freelance",
+    type: "freelance",
+    description:
+      "Web design and development for small and medium businesses across Spain using Astro + React + Tailwind, with AI content and SEO integrations.",
+    milestones: [
+      "Phonetec.es — Tech repair services booking platform (Vercel, Deployed)",
+      "PaulaNails.es — Beauty salon appointment system (Vercel, Deployed)",
+      "HeladeriaRoma.com — Interactive restaurant & menu site (React + Deno)",
+      "DevOps and infrastructure management, analytics and SEO tooling",
+    ],
+  },
+];
+
+const typeColors: Record<string, string> = {
+  work: "#37e4e7",
+  freelance: "#a78bfa",
+  self: "#34d399",
+};
+---
+
+<div class="relative">
+  <!-- Vertical line -->
+  <div
+    class="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-[var(--sec)] via-[var(--component-border)] to-transparent"
+  >
+  </div>
+
+  <div class="space-y-6">
+    {
+      timeline.map((entry) => {
+        const color = typeColors[entry.type];
+        return (
+          <div class="relative pl-8">
+            {/* Timeline dot */}
+            <div
+              class="absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full border-2 z-10"
+              style={`background-color: ${color}22; border-color: ${color}`}
+            >
+              {entry.current && (
+                <span
+                  class="absolute inset-0 rounded-full animate-ping opacity-30"
+                  style={`background-color: ${color}`}
+                />
+              )}
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[var(--component-bg)] border border-[var(--component-border)] hover:border-[var(--sec)]/20 transition-colors duration-300">
+              {/* Period + current badge */}
+              <div class="flex items-center gap-2 flex-wrap mb-2">
+                <span class="text-xs text-[var(--white-muted)] tabular-nums">
+                  {entry.period}
+                </span>
+                {entry.current && (
+                  <span class="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 uppercase tracking-wide">
+                    Current
+                  </span>
+                )}
+              </div>
+
+              {/* Role & Company */}
+              <h4 class="text-[var(--white)] font-semibold text-base mb-0.5">
+                {entry.role}
+              </h4>
+              {entry.companyUrl ? (
+                <a
+                  href={entry.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm hover:underline"
+                  style={`color: ${color}`}
+                >
+                  {entry.company} ↗
+                </a>
+              ) : (
+                <span class="text-sm" style={`color: ${color}`}>
+                  {entry.company}
+                </span>
+              )}
+
+              {/* Description */}
+              <p class="text-[var(--white-muted)] text-xs leading-relaxed mt-2 mb-3">
+                {entry.description}
+              </p>
+
+              {/* Milestones */}
+              <ul class="space-y-1.5">
+                {entry.milestones.map((m) => (
+                  <li class="flex items-start gap-2 text-[var(--white-muted)] text-xs">
+                    <span
+                      class="mt-1.5 w-1 h-1 rounded-full flex-shrink-0"
+                      style={`background-color: ${color}`}
+                    />
+                    <span>{m}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>

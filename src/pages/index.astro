@@ -5,12 +5,141 @@ import Home from "@/components/home.astro";
 import Projects from "@/components/projects.astro";
 import Contact from "@/components/contact.astro";
 import Footer from "@/components/footer.astro";
+import GitHubStats from "@/React/GitHubStats.tsx";
+import Timeline from "@/components/Timeline.astro";
+import TechStack from "@/components/TechStack.astro";
 ---
 
 <Layout title="Gandev.dev">
   <Nav />
   <Home />
+  <section class="py-16 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
+    <div class="max-w-5xl mx-auto">
+      <GitHubStats client:visible />
+    </div>
+  </section>
+  <section id="experience" class="py-16 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-10">
+        <p class="text-sm text-[var(--sec)] mb-2 font-medium tracking-wide uppercase shiny-sec">Career</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-[var(--white)]">Experience & Skills</h2>
+        <div class="h-1 w-20 bg-gradient-to-r from-[var(--sec)] to-transparent rounded-full mt-3"></div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 items-start">
+        <Timeline />
+        <TechStack />
+      </div>
+    </div>
+  </section>
   <Projects />
+  <section class="py-16 text-[var(--white)] border-t border-[var(--white-icon-tr)]">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-10">
+        <p class="text-sm text-[var(--sec)] mb-2 font-medium tracking-wide uppercase shiny-sec">What's next</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-[var(--white)]">Coming Soon</h2>
+        <div class="h-1 w-20 bg-gradient-to-r from-[var(--sec)] to-transparent rounded-full mt-3"></div>
+        <p class="text-[var(--white-muted)] text-sm mt-4 max-w-xl">Features I'm actively building — live demos of what I do, not just descriptions.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- AI Demo -->
+        <div class="group relative overflow-hidden rounded-2xl border border-[var(--component-border)] bg-[var(--component-bg)] p-5 cursor-default select-none">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#37e4e7]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative">
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-2.5 rounded-xl bg-[#37e4e7]/10 border border-[#37e4e7]/20">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6 text-[#37e4e7]">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-[#37e4e7]/30 text-[#37e4e7] bg-[#37e4e7]/10">Soon</span>
+            </div>
+            <h3 class="text-[var(--white)] font-semibold text-base mb-1.5">AI Agent — Live Demo</h3>
+            <p class="text-[var(--white-muted)] text-xs leading-relaxed mb-4">An interactive chat connected to my own API — real-time AI agent you can talk to, right here in the portfolio.</p>
+            <div class="flex flex-wrap gap-1.5">
+              {["Groq API", "NestJS", "Streaming", "LangChain"].map(t => (
+                <span class="px-2 py-0.5 text-[10px] rounded-full bg-[var(--white-icon-tr)] text-[var(--white-muted)] border border-[var(--component-border)]">{t}</span>
+              ))}
+            </div>
+          </div>
+          <!-- Fake chat preview -->
+          <div class="mt-4 p-3 rounded-xl bg-[var(--background)] border border-[var(--component-border)] space-y-2 opacity-40">
+            <div class="flex gap-2 items-end">
+              <div class="w-5 h-5 rounded-full bg-[#37e4e7]/30 flex-shrink-0"></div>
+              <div class="bg-[var(--component-bg)] rounded-xl rounded-bl-none px-3 py-1.5 text-[10px] text-[var(--white-muted)] max-w-[80%]">What's your backend stack?</div>
+            </div>
+            <div class="flex gap-2 items-end flex-row-reverse">
+              <div class="w-5 h-5 rounded-full bg-[var(--sec)]/30 flex-shrink-0"></div>
+              <div class="bg-[#37e4e7]/10 border border-[#37e4e7]/20 rounded-xl rounded-br-none px-3 py-1.5 text-[10px] text-[var(--white-muted)] max-w-[80%]">NestJS, PostgreSQL, Redis...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Own Contact API -->
+        <div class="group relative overflow-hidden rounded-2xl border border-[var(--component-border)] bg-[var(--component-bg)] p-5 cursor-default select-none">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#a78bfa]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative">
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-2.5 rounded-xl bg-[#a78bfa]/10 border border-[#a78bfa]/20">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6 text-[#a78bfa]">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-[#a78bfa]/30 text-[#a78bfa] bg-[#a78bfa]/10">Soon</span>
+            </div>
+            <h3 class="text-[var(--white)] font-semibold text-base mb-1.5">Own Contact API</h3>
+            <p class="text-[var(--white-muted)] text-xs leading-relaxed mb-4">Replacing Formspree with my own webhook endpoint — NestJS + rate limiting + email queue. Consistent with the backend profile.</p>
+            <div class="flex flex-wrap gap-1.5">
+              {["NestJS", "Nodemailer", "Rate Limiting", "Queue"].map(t => (
+                <span class="px-2 py-0.5 text-[10px] rounded-full bg-[var(--white-icon-tr)] text-[var(--white-muted)] border border-[var(--component-border)]">{t}</span>
+              ))}
+            </div>
+          </div>
+          <!-- Fake endpoint preview -->
+          <div class="mt-4 p-3 rounded-xl bg-[var(--background)] border border-[var(--component-border)] font-mono text-[10px] opacity-40 space-y-1">
+            <div><span class="text-[#a78bfa]">POST</span> <span class="text-[var(--white-muted)]">/api/contact</span></div>
+            <div class="text-green-400">200 OK — Message queued</div>
+          </div>
+        </div>
+
+        <!-- Tech Blog -->
+        <div class="group relative overflow-hidden rounded-2xl border border-[var(--component-border)] bg-[var(--component-bg)] p-5 cursor-default select-none">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#34d399]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative">
+            <div class="flex items-center justify-between mb-4">
+              <div class="p-2.5 rounded-xl bg-[#34d399]/10 border border-[#34d399]/20">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6 text-[#34d399]">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-[#34d399]/30 text-[#34d399] bg-[#34d399]/10">Soon</span>
+            </div>
+            <h3 class="text-[var(--white)] font-semibold text-base mb-1.5">Technical Blog</h3>
+            <p class="text-[var(--white-muted)] text-xs leading-relaxed mb-4">Short articles about what I actually build — NestJS patterns, PostgreSQL tricks, AI integration lessons. Astro MDX, zero config.</p>
+            <div class="flex flex-wrap gap-1.5">
+              {["Astro MDX", "PostgreSQL", "NestJS", "AI"].map(t => (
+                <span class="px-2 py-0.5 text-[10px] rounded-full bg-[var(--white-icon-tr)] text-[var(--white-muted)] border border-[var(--component-border)]">{t}</span>
+              ))}
+            </div>
+          </div>
+          <!-- Fake post list preview -->
+          <div class="mt-4 space-y-1.5 opacity-40">
+            {[
+              "Optimizing PostgreSQL for BI with Metabase",
+              "Building AI agents with LangChain + NestJS",
+            ].map(title => (
+              <div class="flex items-center gap-2 p-2 rounded-lg bg-[var(--background)] border border-[var(--component-border)]">
+                <div class="w-1 h-1 rounded-full bg-[#34d399] flex-shrink-0"></div>
+                <span class="text-[10px] text-[var(--white-muted)] truncate">{title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
   <Contact />
   <Footer />
 </Layout>

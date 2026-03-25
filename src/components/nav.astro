@@ -12,6 +12,11 @@ const navItems: NavItem[] = [
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM19 19V9.97815L12 4.53371L5 9.97815V19H19Z"></path></svg>`,
   },
   {
+    label: "Experience",
+    href: "#experience",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 4H4V2H20V4H18V6C18 7.61543 17.1838 9.03878 15.9381 9.8993L14.4986 10.8889C14.1858 11.0993 14 11.4532 14 11.8271V12.1729C14 12.5468 14.1858 12.9007 14.4986 13.1111L15.9381 14.1007C17.1838 14.9612 18 16.3846 18 18V20H20V22H4V20H6V18C6 16.3846 6.81616 14.9612 8.06189 14.1007L9.50144 13.1111C9.81416 12.9007 10 12.5468 10 12.1729V11.8271C10 11.4532 9.81416 11.0993 9.50144 10.8889L8.06189 9.8993C6.81616 9.03878 6 7.61543 6 6V4ZM8 4V6C8 7.07553 8.54311 8.01832 9.37329 8.58397L10.8128 9.57358C11.5515 10.0675 12 10.916 12 11.8271V12.1729C12 13.084 11.5515 13.9325 10.8128 14.4264L9.37329 15.416C8.54311 15.9817 8 16.9245 8 18V20H16V18C16 16.9245 15.4569 15.9817 14.6267 15.416L13.1872 14.4264C12.4485 13.9325 12 13.084 12 12.1729V11.8271C12 10.916 12.4485 10.0675 13.1872 9.57358L14.6267 8.58397C15.4569 8.01832 16 7.07553 16 6V4H8Z"></path></svg>`,
+  },
+  {
     label: "Projects",
     href: "#projects",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
@@ -19,11 +24,6 @@ const navItems: NavItem[] = [
   {
     label: "Contact",
     href: "#contact",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path></svg>`,
-  },
-  {
-    label: "Curriculum",
-    href: "#cv",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path></svg>`,
   },
 ];
@@ -133,6 +133,16 @@ const navItems: NavItem[] = [
         }
       </div>
       <div class="flex items-center justify-end gap-3">
+        <a
+          href="#cv"
+          class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[var(--white-icon-tr)] text-[var(--white-icon)] hover:text-[var(--white)] hover:border-[var(--sec)]/30 hover:bg-[var(--sec)]/5 transition-all duration-200 text-sm font-medium"
+          aria-label="Download CV"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 flex-shrink-0">
+            <path d="M3 19H21V21H3V19ZM13 13.1716L19.0711 7.1005L20.4853 8.51472L12 17L3.51472 8.51472L4.92893 7.1005L11 13.1716V2H13V13.1716Z"></path>
+          </svg>
+          CV
+        </a>
         <button class="background-icon md:hidden" id="open-sidebar">
           <svg
             class="w-8 h-8"
