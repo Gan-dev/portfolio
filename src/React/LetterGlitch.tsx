@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 const LetterGlitch = ({
   glitchColors = ["#5e4491", "#A476FF", "#241a38"],
@@ -19,6 +19,7 @@ const LetterGlitch = ({
     {
       char: string;
       color: string;
+      startColor: string;
       targetColor: string;
       colorProgress: number;
     }[]
@@ -26,7 +27,7 @@ const LetterGlitch = ({
   const grid = useRef({ columns: 0, rows: 0 });
   const context = useRef<CanvasRenderingContext2D | null>(null);
   const lastGlitchTime = useRef(Date.now());
-  const [currentPalette, setCurrentPalette] = useState(0);
+  const currentPaletteRef = useRef(0);
 
   // Paletas de colores vibrantes que contrastan con la página oscura
   const colorPalettes = [
@@ -110,7 +111,7 @@ const LetterGlitch = ({
   };
 
   const getRandomColor = () => {
-    const palette = colorPalettes[currentPalette];
+    const palette = colorPalettes[currentPaletteRef.current];
     return palette[Math.floor(Math.random() * palette.length)];
   };
 
@@ -135,12 +136,10 @@ const LetterGlitch = ({
     end: { r: number; g: number; b: number },
     factor: number,
   ) => {
-    const result = {
-      r: Math.round(start.r + (end.r - start.r) * factor),
-      g: Math.round(start.g + (end.g - start.g) * factor),
-      b: Math.round(start.b + (end.b - start.b) * factor),
-    };
-    return `rgb(${result.r}, ${result.g}, ${result.b})`;
+    const r = Math.round(start.r + (end.r - start.r) * factor);
+    const g = Math.round(start.g + (end.g - start.g) * factor);
+    const b = Math.round(start.b + (end.b - start.b) * factor);
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
   };
 
   const calculateGrid = (width: number, height: number) => {
@@ -152,9 +151,11 @@ const LetterGlitch = ({
   const initializeLetters = (columns: number, rows: number) => {
     grid.current = { columns, rows };
     const totalLetters = columns * rows;
+    const initColor = getRandomColor();
     letters.current = Array.from({ length: totalLetters }, () => ({
       char: getRandomChar(),
-      color: getRandomColor(),
+      color: initColor,
+      startColor: initColor,
       targetColor: getRandomColor(),
       colorProgress: 1,
     }));
@@ -210,6 +211,7 @@ const LetterGlitch = ({
       if (!letters.current[index]) continue; // Skip if index is invalid
 
       letters.current[index].char = getRandomChar();
+      letters.current[index].startColor = letters.current[index].color;
       letters.current[index].targetColor = getRandomColor();
 
       if (!smooth) {
@@ -228,7 +230,7 @@ const LetterGlitch = ({
         letter.colorProgress += 0.05;
         if (letter.colorProgress > 1) letter.colorProgress = 1;
 
-        const startRgb = hexToRgb(letter.color);
+        const startRgb = hexToRgb(letter.startColor);
         const endRgb = hexToRgb(letter.targetColor);
         if (startRgb && endRgb) {
           letter.color = interpolateColor(
@@ -292,11 +294,10 @@ const LetterGlitch = ({
   // Rotar paletas de colores cada 3 segundos
   useEffect(() => {
     const paletteInterval = setInterval(() => {
-      setCurrentPalette((prev) => (prev + 1) % colorPalettes.length);
+      currentPaletteRef.current = (currentPaletteRef.current + 1) % colorPalettes.length;
     }, 3000);
 
     return () => clearInterval(paletteInterval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
